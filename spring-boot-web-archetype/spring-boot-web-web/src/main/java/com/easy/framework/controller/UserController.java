@@ -2,6 +2,8 @@ package com.easy.framework.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.easy.framework.core.domain.http.request.Page;
+import com.easy.framework.core.domain.http.response.ApiResult;
 import com.easy.framework.domain.User;
 import com.easy.framework.service.UserService;
 import org.springframework.web.bind.annotation.*;

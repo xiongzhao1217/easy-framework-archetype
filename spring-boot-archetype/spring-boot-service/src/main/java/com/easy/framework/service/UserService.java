@@ -1,6 +1,7 @@
 package com.easy.framework.service;
 
 
+import com.easy.framework.core.base.IService;
 import com.easy.framework.domain.User;
 
 /**

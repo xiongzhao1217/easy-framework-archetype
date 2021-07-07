@@ -8,9 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
 
 /**
  * springboot 启动类
@@ -23,11 +21,7 @@ import org.springframework.context.annotation.PropertySources;
  * @author xiongzhao
  */
 @Slf4j
-@PropertySources(
-		value = {
-				@PropertySource(value = {"classpath:application.properties"}, encoding = "utf-8")
-		}
-)
+@PropertySource(value = {"classpath:application.properties"}, encoding = "utf-8")
 @MapperScan("com.easy.framework.dao")
 @SpringBootApplication
 public class WebApplication extends SpringBootServletInitializer implements ApplicationRunner {

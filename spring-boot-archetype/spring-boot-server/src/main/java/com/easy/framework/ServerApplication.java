@@ -6,16 +6,10 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
 
 @Slf4j
-@PropertySources(
-		value = {
-				@PropertySource(value = {"classpath:application.properties"}, encoding = "utf-8")
-		}
-)
+@PropertySource(value = {"classpath:application.properties"}, encoding = "utf-8")
 @MapperScan("com.easy.framework.dao")
 @SpringBootApplication
 public class ServerApplication implements ApplicationRunner {

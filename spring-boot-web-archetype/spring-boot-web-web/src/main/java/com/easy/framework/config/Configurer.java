@@ -4,6 +4,9 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.easy.framework.core.domain.http.response.ApiResult;
+import com.easy.framework.core.enums.HttpResultEnum;
+import com.easy.framework.core.exception.AppException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,12 +29,12 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
 
@@ -106,7 +109,7 @@ public class Configurer implements WebMvcConfigurer {
     @Override
     public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
         exceptionResolvers.add((request, response, handler, e) -> {
-            ApiResult.ApiResultBuilder result = ApiResult.builder();
+            ApiResult result = new ApiResult();
             if (e instanceof BindException || e instanceof MethodArgumentNotValidException) {
                 // 处理hibernate validation校验异常
                 FieldError error = e instanceof BindException ?
@@ -117,22 +120,22 @@ public class Configurer implements WebMvcConfigurer {
                 if(index > -1) {
                     message = message.substring(index + 14);
                 }
-                result.code(ResultCode.FAIL.code()).message(message);
+                result.setCode(HttpResultEnum.FAIL.getCode()).setMessage(message);
                 logger.info(e.getMessage());
             }
             //业务失败的异常，如“账号或密码错误”
             else if (e instanceof AppException) {
-                result.code(((AppException) e).getCode()).message(e.getMessage());
+                result.setCode(((AppException) e).getCode()).setMessage(e.getMessage());
                 logger.info(e.getMessage(), e);
             } else if (e instanceof NoHandlerFoundException) {
-                result.code(ResultCode.NOT_FOUND.code()).message("接口 [" + request.getRequestURI() + "] 不存在");
+                result.setCode(HttpResultEnum.NOT_FOUND.getCode()).setMessage("接口 [" + request.getRequestURI() + "] 不存在");
             } else if (e instanceof ServletException) {
-                result.code(ResultCode.FAIL.code()).message(e.getMessage());
+                result.setCode(HttpResultEnum.FAIL.getCode()).setMessage(e.getMessage());
             } else if (e instanceof HttpMessageNotReadableException) {
-                result.code(ResultCode.FAIL.code()).message("接口 [" + request.getRequestURI() + "] 参数错误");
+                result.setCode(HttpResultEnum.FAIL.getCode()).setMessage("接口 [" + request.getRequestURI() + "] 参数错误");
                 logger.error("接口 [" + request.getRequestURI() + "] 参数错误", e);
             } else {
-                result.code(ResultCode.FAIL.code()).message("接口 [" + request.getRequestURI() + "] 内部错误，请联系管理员");
+                result.setCode(HttpResultEnum.FAIL.getCode()).setMessage("接口 [" + request.getRequestURI() + "] 内部错误，请联系管理员");
                 String message;
                 if (handler instanceof HandlerMethod) {
                     HandlerMethod handlerMethod = (HandlerMethod) handler;
@@ -146,7 +149,7 @@ public class Configurer implements WebMvcConfigurer {
                 }
                 logger.error(message, e);
             }
-            responseResult(response, result.build());
+            responseResult(response, result);
             return new ModelAndView();
         });
     }

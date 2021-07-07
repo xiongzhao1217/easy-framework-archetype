@@ -1,9 +1,9 @@
 package com.easy.framework.service.impl;
 
+import com.easy.framework.core.base.BaseService;
 import com.easy.framework.service.UserService;
 import com.easy.framework.dao.UserMapper;
 import com.easy.framework.domain.User;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 /**
