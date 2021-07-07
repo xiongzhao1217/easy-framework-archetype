@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <properties>
+        <property name="patternLayout">%d %t %-5p %X{uuid} (%c{1.} %M:%L) - %m%n</property>
+        <property name="binlogLayout">%d %t %-5p %X{uuid} - syncId:[%X{syncId}] %m%n</property>
+        <property name="LOG_PATH">/export/Logs/com.easy.framework</property>
+        <property name="sizeMB">1000MB</property>
+        <property name="dayTime">1</property>
+        <property name="dayFileSize">100</property>
+        <property name="KEEP_LOG_DAY">2D</property> <!-- 保留日志天数 D H M S 分别对应天 小时 分钟 秒 -->
+    </properties>
+
+    <Appenders>
+        <Console name="STD_OUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="${patternLayout}"/>
+        </Console>
+        <Async name="AsyncSTD_OUT">
+            <AppenderRef ref="STD_OUT"/>
+        </Async>
+
+        <RollingRandomAccessFile name="DEFAULT_FILE" fileName="${LOG_PATH}/default.log"
+                                 filePattern="${LOG_PATH}/default_%d{yyyyMMdd}_%i.log"
+                                 immediateFlush="true"
+                                 append="true">
+            <PatternLayout pattern="${patternLayout}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="${dayTime}" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="${sizeMB}"/>
+            </Policies>
+            <DefaultRolloverStrategy max="${dayFileSize}">
+                <Delete basePath="${LOG_PATH}" maxDepth="2">
+                    <IfFileName glob="*/default_*.log" />
+                    <IfLastModified age="${KEEP_LOG_DAY}"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingRandomAccessFile>
+
+        <RollingRandomAccessFile name="EXCEPTION_FILE" fileName="${LOG_PATH}/error.log"
+                                 filePattern="${LOG_PATH}/error_%d{yyyyMMdd}_%i.log"
+                                 immediateFlush="true"
+                                 append="true">
+            <PatternLayout pattern="${patternLayout}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="${dayTime}"/>
+            </Policies>
+            <DefaultRolloverStrategy max="${dayFileSize}">
+                <Delete basePath="${LOG_PATH}" maxDepth="2">
+                    <IfFileName glob="*/error_*.log" />
+                    <IfLastModified age="${KEEP_LOG_DAY}"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+            <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+        </RollingRandomAccessFile>
+    </Appenders>
+
+    <Loggers>
+        <!--基础日志配置 start-->
+        <AsyncRoot level="INFO">
+            <AppenderRef ref="AsyncSTD_OUT"/>
+            <AppenderRef ref="DEFAULT_FILE"/>
+            <AppenderRef ref="EXCEPTION_FILE"/>
+        </AsyncRoot>
+    </Loggers>
+</Configuration>

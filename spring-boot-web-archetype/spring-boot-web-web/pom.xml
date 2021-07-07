@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.easy.framework</groupId>
+		<artifactId>spring-boot-web</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	<groupId>com.easy.framework</groupId>
+	<artifactId>spring-boot-web-web</artifactId>
+	<name>${project.artifactId}</name>
+	<description>web模块，包含Controller模块和springboot启动类</description>
+
+	<packaging>war</packaging>
+
+	<dependencies>
+		<!-- springboot web项目 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!-- springboot 测试 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- service模块 -->
+		<dependency>
+			<groupId>com.easy.framework</groupId>
+			<artifactId>spring-boot-web-service</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
+		<!-- message模块 -->
+		<dependency>
+			<groupId>com.easy.framework</groupId>
+			<artifactId>spring-boot-web-message</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
+        <!-- 单点登录sdk -->
+
+		<!-- servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- 代码生成工具 -->
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-generator</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
