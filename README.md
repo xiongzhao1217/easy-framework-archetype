@@ -13,7 +13,7 @@ easy 脚手架，快速生成spring-boot或spirng-boot-web项目。
 输入以下命令，根据提示输入 `groupId` 和 `artifactId`，其他选项直接按 `Enter` 跳过。<br>
 注意: 本地 `maven setting.xml` 文件需要提前配置好 `maven` 私服地址。
 ```
-// spring-boot-web项目
+// spring-boot-web项目,若希望从本地仓库生成项目,可添加-DarchetypeCatalog=internal选项,禁止从远程仓库获取.
 mvn archetype:generate -DarchetypeGroupId=com.easy.framework -DarchetypeArtifactId=spring-boot-web-archetype -DarchetypeVersion=1.0-SNAPSHOT
 
 // spring-boot项目
