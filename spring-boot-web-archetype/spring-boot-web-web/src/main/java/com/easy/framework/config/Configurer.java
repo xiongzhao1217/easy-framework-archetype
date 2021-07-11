@@ -10,14 +10,11 @@ import com.easy.framework.core.exception.AppException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.json.GsonHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
@@ -55,9 +52,6 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @author xiongzhao
  */
 @Configuration
-@EnableAsync
-@EnableAspectJAutoProxy(exposeProxy = true)
-@ImportResource(locations={"classpath:conf/*.xml"})
 @Slf4j
 public class Configurer implements WebMvcConfigurer {
 
@@ -161,7 +155,7 @@ public class Configurer implements WebMvcConfigurer {
      */
     private void responseResult(HttpServletResponse response, ApiResult result) {
         response.setCharacterEncoding("UTF-8");
-        response.setHeader("Content-messageType", "application/json;charset=UTF-8");
+        response.setContentType("text/html;charset=utf-8");
         response.setStatus(200);
         try {
             response.getWriter().write(JSON.toJSONString(result));

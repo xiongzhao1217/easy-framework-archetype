@@ -31,6 +31,12 @@
 			<artifactId>disruptor</artifactId>
 		</dependency>
 
+		<!-- cglib代理 -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+		</dependency>
+
 		<!-- fastjson -->
 		<dependency>
 			<groupId>com.alibaba</groupId>

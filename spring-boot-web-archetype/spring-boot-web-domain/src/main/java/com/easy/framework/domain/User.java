@@ -13,14 +13,17 @@ public class User {
      * id
      */
     private Long id;
+
     /**
      * 用户名称
      */
     private String name;
+
     /**
      * 年龄
      */
     private Integer age;
+
     /**
      * 邮箱
      */

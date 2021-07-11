@@ -65,9 +65,9 @@ public class UserController {
      */
     @GetMapping("/list")
     public ApiResult list(Page page, User query){
-        LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<User>()
-                .eq(User::getName, query.getName())
-                .ge(User::getAge, query.getAge());
+        LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<User>();
+//                .eq(User::getName, query.getName())
+//                .ge(User::getAge, query.getAge());
         return ApiResult.success(userService.queryPage(page, wrapper));
     }
 }

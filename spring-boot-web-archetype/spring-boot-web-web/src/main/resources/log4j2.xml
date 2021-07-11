@@ -3,7 +3,7 @@
     <properties>
         <property name="patternLayout">%d %t %-5p %X{uuid} (%c{1.} %M:%L) - %m%n</property>
         <property name="binlogLayout">%d %t %-5p %X{uuid} - syncId:[%X{syncId}] %m%n</property>
-        <property name="LOG_PATH">/export/Logs/com.easy.framework</property>
+        <property name="LOG_PATH">/Users/xiong/Logs/com.easy.framework</property>
         <property name="sizeMB">1000MB</property>
         <property name="dayTime">1</property>
         <property name="dayFileSize">100</property>

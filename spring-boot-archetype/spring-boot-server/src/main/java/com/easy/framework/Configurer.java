@@ -3,9 +3,6 @@ package com.easy.framework;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.context.annotation.ImportResource;
-import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -24,9 +21,6 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @author xiongzhao
  */
 @Configuration
-@EnableAsync
-@EnableAspectJAutoProxy(exposeProxy = true)
-@ImportResource(locations={"classpath:conf/*.xml"})
 @Slf4j
 public class Configurer {
 
