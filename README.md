@@ -8,6 +8,17 @@ easy 脚手架，快速生成spring-boot或spirng-boot-web项目。
 * 降低项目维护成本，易于组内成员相互协助时能快速上手。
 * 统一jar包管理，组内成员不用关心通用jar的版本，组内共同维护一个通用 `parent pom`，在jar包需要升级时，统一协调升级。
 
+## 特性
+* 常用600+依赖jar包父pom统一管理，项目中无需维护jar包版本([见父pom文档](https://github.com/xiongzhao1217/easy-framework-parent))
+* 最佳实践的项目结构（[查看项目结构图]()）
+* 统一响应结果封装及生成工具（[见文档]()）
+* 统一异常处理(web项目)
+* 生成代码简洁优雅、扩展性强、利于维护
+* 常用基础方法抽象封装，见service层基础方法
+* 集成MyBatis plus、PageHelper分页插件，实现单表业务零SQL
+* 编码风格统一、表格增减字段对代码的改动量非常小，快速、简单
+* 支持生成lombok风格的代码，大大减少代码量和提升简洁性
+
 ## 快速开始
 ### 命令方式
 输入以下命令，根据提示输入 `groupId` 和 `artifactId`，其他选项直接按 `Enter` 跳过。<br>
