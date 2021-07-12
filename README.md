@@ -10,7 +10,7 @@ easy 脚手架，快速生成spring-boot或spirng-boot-web项目。
 
 ## 特性
 * 常用600+依赖jar包父pom统一管理，项目中无需维护jar包版本([见父pom文档](https://github.com/xiongzhao1217/easy-framework-parent))
-* 最佳实践的项目结构（[查看项目结构图]()）
+* 最佳实践的项目结构（[查看项目结构图](https://github.com/xiongzhao1217/easy-framework-archetype/blob/master/README.md#%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E8%84%9A%E6%89%8B%E6%9E%B6)）
 * 统一响应结果封装及生成工具（[见文档]()）
 * 统一异常处理(web项目)
 * 生成代码简洁优雅、扩展性强、利于维护
